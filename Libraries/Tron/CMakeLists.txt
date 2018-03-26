@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required(VERSION 3.9.2)
 
 project(Tron)
 
@@ -33,4 +33,4 @@ add_library(Tron STATIC ${Tron_AGGREGATE_HEADERS} ${Tron_AGGREGATE_SOURCES})
 
 set_target_properties(Tron PROPERTIES FOLDER "Games")
 
-install(TARGETS Tron DESTINATION lib)
+install(TARGETS Tron DESTINATION lib EXCLUDE_FROM_ALL)

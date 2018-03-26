@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required(VERSION 3.9.2)
 
 project(SokobanLobby)
 
@@ -36,4 +36,4 @@ add_library(SokobanLobby STATIC ${SokobanLobby_AGGREGATE_HEADERS} ${SokobanLobby
 
 set_target_properties(SokobanLobby PROPERTIES FOLDER "ServerCode")
 
-install(TARGETS SokobanLobby DESTINATION lib)
+install(TARGETS SokobanLobby DESTINATION lib EXCLUDE_FROM_ALL)

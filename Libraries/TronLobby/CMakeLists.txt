@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required(VERSION 3.9.2)
 
 project(TronLobby)
 
@@ -35,4 +35,4 @@ add_library(TronLobby STATIC ${TronLobby_AGGREGATE_HEADERS} ${TronLobby_AGGREGAT
 
 set_target_properties(TronLobby PROPERTIES FOLDER "ServerCode")
 
-install(TARGETS TronLobby DESTINATION lib)
+install(TARGETS TronLobby DESTINATION lib EXCLUDE_FROM_ALL)

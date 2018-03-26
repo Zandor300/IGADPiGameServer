@@ -7,60 +7,60 @@
 
 size_t ConvertString(const char *a_Input, wchar_t *a_Output)
 {
-#if defined(ENVIRONMENT_WINDOWS)
+#if defined(WIN32)
 	const size_t originalSize = strlen(a_Input) + 1;
 	const size_t newSize = 256;
 	size_t convertedChars = 0;
 	mbstowcs_s(&convertedChars, a_Output, originalSize, a_Input, _TRUNCATE);
 	return convertedChars;
-#elif defined(ENVIRONMENT_PI)
+#elif defined(__linux__)
 	return 0;
 #endif
 }
 
 size_t ConvertString(const wchar_t *a_Input, char *&a_Output)
 {
-#if defined(ENVIRONMENT_WINDOWS)
+#if defined(WIN32)
 	const size_t originalSize = wcslen(a_Input);
 	const int newSize = WideCharToMultiByte(CP_UTF8, 0, &a_Input[0], static_cast<int>(originalSize), 0, 0, 0, 0);
 	a_Output = new char[newSize];
 	WideCharToMultiByte(CP_UTF8, 0, &a_Input[0], static_cast<int>(originalSize), &a_Output[0], newSize, 0, 0);
 	a_Output[newSize] = '\0';
 	return newSize;
-#elif defined(ENVIRONMENT_PI)
+#elif defined(__linux__)
 	return 0;
 #endif
 }
 
 std::wstring StringToWideString(const std::string &a_String)
 {
-#if defined(ENVIRONMENT_WINDOWS)
+#if defined(WIN32)
 	const int originalLength = static_cast<int>(a_String.length()) + 1;
 	int length = MultiByteToWideChar(CP_ACP, 0, a_String.c_str(), originalLength, 0, 0);
 	std::wstring convertedString(length, L'\0');
 	MultiByteToWideChar(CP_ACP, 0, a_String.c_str(), originalLength, &convertedString[0], length);
 	return convertedString;
-#elif defined(ENVIRONMENT_PI)
+#elif defined(__linux__)
 	return std::wstring();
 #endif
 }
 
 std::string WideStringToString(const std::wstring &a_String)
 {
-#if defined(ENVIRONMENT_WINDOWS)
+#if defined(WIN32)
 	const int originalLength = static_cast<int>(a_String.length()) + 1;
 	int length = WideCharToMultiByte(CP_ACP, 0, a_String.c_str(), originalLength, 0, 0, 0, 0);
 	std::string convertedString(length, '\0');
 	WideCharToMultiByte(CP_ACP, 0, a_String.c_str(), originalLength, &convertedString[0], length, 0, 0);
 	return convertedString;
-#elif defined(ENVIRONMENT_PI)
+#elif defined(__linux__)
 	return std::string();
 #endif
 }
 
 std::vector<std::string> Tokenize(const std::string &a_String, const std::string &a_Delimiters)
 {
-#if defined(ENVIRONMENT_WINDOWS)
+#if defined(WIN32)
 	std::vector<std::string> tokens;
 	std::string::size_type lastPos = a_String.find_first_not_of(a_Delimiters, 0);
 	std::string::size_type pos = a_String.find_first_of(a_Delimiters, lastPos);
@@ -72,7 +72,7 @@ std::vector<std::string> Tokenize(const std::string &a_String, const std::string
 		pos = a_String.find_first_of(a_Delimiters, lastPos);
 	}
 	return tokens;
-#elif defined(ENVIRONMENT_PI)
+#elif defined(__linux__)
 	return std::vector<std::string>();
 #endif
 }

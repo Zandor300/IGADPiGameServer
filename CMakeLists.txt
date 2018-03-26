@@ -1,5 +1,9 @@
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required(VERSION 3.9.2)
 project (IGADPiGameServer)
+
+if(UNIX)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=gnu++11")
+endif()
 
 set(THIRD_PARTY_FOLDER ${CMAKE_SOURCE_DIR}/ThirdParty/)
 set(ROOT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/Include/)
@@ -13,6 +17,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin) # Output directory f
 set(CMAKE_DEBUG_POSTFIX "_d")
 
 include_directories(${ROOT_INCLUDE_FOLDER})
+
+add_definitions(-D_WINSOCKAPI_ )
 
 add_subdirectory(Libraries)
 add_subdirectory(Applications)

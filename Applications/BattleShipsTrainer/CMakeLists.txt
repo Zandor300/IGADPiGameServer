@@ -1,12 +1,12 @@
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required(VERSION 3.9.2)
 
 project(BattleShipsTrainer LANGUAGES CXX)
 
 include_directories(${ROOT_INCLUDE_FOLDER}BattleShipsTrainer)
-include_directories(${ROOT_INCLUDE_FOLDER}RakNet)
 
 #external dependencies
 include_directories(${THIRD_PARTY_FOLDER}boost_1_65_1)
+include_directories(${THIRD_PARTY_FOLDER}RakNet/include)
 
 #header files
 set(BattleShipsTrainer_CORE_HEADERS
@@ -29,7 +29,10 @@ set(BattleShipsTrainer_AGGREGATE_SOURCES
 #setup target
 add_executable(BattleShipsTrainer ${BattleShipsTrainer_CORE_HEADERS} ${BattleShipsTrainer_CORE_SOURCE})
 
-target_link_libraries(BattleShipsTrainer Framework Network RakNet ScotlandYard Sokoban Tron ScotlandYardLobby Server SokobanLobby TronLobby Ws2_32)
+target_link_libraries(BattleShipsTrainer Framework Network ScotlandYard Sokoban Tron ScotlandYardLobby Server SokobanLobby TronLobby Ws2_32)
+
+target_link_libraries(BattleShipsTrainer debug ${RAKNET_STATIC_LIB_DEBUG})
+target_link_libraries(BattleShipsTrainer optimized ${RAKNET_STATIC_LIB_RELEASE})
 
 set_target_properties(BattleShipsTrainer PROPERTIES FOLDER "Applications")
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required(VERSION 3.9.2)
 
 project(ScotlandYardLobby)
 
@@ -35,4 +35,4 @@ add_library(ScotlandYardLobby STATIC ${ScotlandYardLobby_AGGREGATE_HEADERS} ${Sc
 
 set_target_properties(ScotlandYardLobby PROPERTIES FOLDER "ServerCode")
 
-install(TARGETS ScotlandYardLobby DESTINATION lib)
+install(TARGETS ScotlandYardLobby DESTINATION lib EXCLUDE_FROM_ALL)

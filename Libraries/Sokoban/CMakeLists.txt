@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required(VERSION 3.9.2)
 
 project(Sokoban)
 
@@ -39,4 +39,4 @@ add_library(Sokoban STATIC ${Sokoban_AGGREGATE_HEADERS} ${Sokoban_AGGREGATE_SOUR
 
 set_target_properties(Sokoban PROPERTIES FOLDER "Games")
 
-install(TARGETS Sokoban DESTINATION lib)
+install(TARGETS Sokoban DESTINATION lib EXCLUDE_FROM_ALL)

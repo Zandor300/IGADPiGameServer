@@ -4,7 +4,7 @@
 #include "../GetLastErrorAsString.h"
 #include "../StringFunctions.h"
 
-#if defined(ENVIRONMENT_WINDOWS)
+#if defined(WIN32)
 
 #include <windows.h>
 
@@ -46,7 +46,7 @@ void WriteToNamedPipe(const std::string &a_PipeName, const std::string &a_Data)
 	::CloseHandle(pipeHandle);
 }
 
-#elif defined(ENVIRONMENT_PI)
+#elif defined(__linux__)
 
 void WriteToNamedPipe(const std::string &a_PipeName, const std::string &a_Data)
 {
