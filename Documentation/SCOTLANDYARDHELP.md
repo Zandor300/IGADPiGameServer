@@ -136,17 +136,19 @@ DATA_...: Repeating DATA_2 and DATA_3 until the amount in DATA_1...
 ### `EMessage_RecvGetRemainingTokens`
 Will inform the client the amount of tokens the player has. Can be requested using `EMessage_SendGetRemainingTokens`.
 ```
-DATA_1: ETravelOption(<TRAVEL OPTION>)
-DATA_2: uint32_t(<TOKENS FOR TRAVEL OPTION IN DATA_1>)
+DATA_1: uint32_t(<CLIENT ID>)
+DATA_2: uint8_t(<AMOUNT OF TRAVELOPTIONS>)
 DATA_3: ETravelOption(<TRAVEL OPTION>)
-DATA_4: uint32_t(<TOKENS FOR TRAVEL OPTION IN DATA_3>)
+DATA_4: uint32_t(<TOKENS FOR TRAVEL OPTION IN DATA_1>)
 DATA_5: ETravelOption(<TRAVEL OPTION>)
-DATA_6: uint32_t(<TOKENS FOR TRAVEL OPTION IN DATA_5>)
+DATA_6: uint32_t(<TOKENS FOR TRAVEL OPTION IN DATA_3>)
+DATA_7: ETravelOption(<TRAVEL OPTION>)
+DATA_8: uint32_t(<TOKENS FOR TRAVEL OPTION IN DATA_5>)
 ```
 If the player requested is a spy. The following will also be sent.
 ```
-DATA_7: ETravelOption(<TRAVEL OPTION>)
-DATA_8: uint32_t(<TOKENS FOR TRAVEL OPTION IN DATA_7>)
+DATA_9: ETravelOption(<TRAVEL OPTION>)
+DATA_10: uint32_t(<TOKENS FOR TRAVEL OPTION IN DATA_7>)
 ```
 
 ## Travel Options

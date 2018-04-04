@@ -328,6 +328,13 @@ void ScotlandYardServerGame::HandleGetRemainingTokens(RakNet::Packet &a_Packet, 
 
 		RakNet::BitStream payload;
 		payload.Write(static_cast<RakNet::MessageID>(EMessage_RecvGetRemainingTokens));
+		payload.Write(a_ClientID);
+
+		if (player.IsSpy())
+			payload.Write(static_cast<uint8_t>(4));
+		else
+			payload.Write(static_cast<uint8_t>(3));
+
 		payload.Write(static_cast<short>(ETravelOption_Taxi));
 		payload.Write(player.GetTokens(ETravelOption_Taxi));
 		payload.Write(static_cast<short>(ETravelOption_Bus));
