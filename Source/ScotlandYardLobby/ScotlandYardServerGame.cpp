@@ -246,6 +246,7 @@ void ScotlandYardServerGame::HandleGetLocation(RakNet::Packet &a_Packet, ClientI
 
 		RakNet::BitStream payload;
 		payload.Write(static_cast<RakNet::MessageID>(EMessage_RecvGetLocation));
+		payload.Write(a_ClientID);
 		payload.Write(player.GetPosition());
 		SendNetworkMessage(GetPeerInterface(), a_Packet.systemAddress, payload);
 	}
