@@ -96,9 +96,11 @@ The destination node id's are 0 if the spy is hidden. In all the other turns whe
 
 ### `EMessage_RecvGetPlayerLocations`
 ```
-DATA_1: EPlayer(<EPLAYER OF PLAYER 1>)
-DATA_2: ClientID(<CLIENT ID OF PLAYER 1>)
-DATA_3: uint32_t(<NODE NUMBER PLAYER 1 IS AT>)
+DATA_1: uint32_t(<NUMBER OF PLAYERS>)
+
+DATA_2: EPlayer(<EPLAYER OF PLAYER 1>)
+DATA_3: ClientID(<CLIENT ID OF PLAYER 1>)
+DATA_4: uint32_t(<NODE NUMBER PLAYER 1 IS AT>)
 
 DATA_...: Repeating for all players.
 ```

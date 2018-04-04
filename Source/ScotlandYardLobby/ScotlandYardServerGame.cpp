@@ -190,6 +190,9 @@ void ScotlandYardServerGame::HandleGetPlayerLocations(RakNet::Packet &a_Packet, 
 
 		const ScotlandYardGame &game = *const_cast<ScotlandYardGame*>(m_Game);
 		const uint32_t numPlayers = GetNumPlayersPerGame();
+
+		payload.Write(numPlayers);
+
 		for (uint32_t playerIndex = 0; playerIndex < numPlayers; ++playerIndex)
 		{
 			EPlayer playerID = static_cast<EPlayer>(playerIndex);
