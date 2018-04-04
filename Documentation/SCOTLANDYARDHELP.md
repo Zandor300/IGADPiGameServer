@@ -106,7 +106,7 @@ DATA_...: Repeating for all players.
 ### `EMessage_RecvGetLocation`
 ```
 DATA_1: ClientID(<CLIENT ID>)
-DATA_2: uint32_t(<LOCATION>)
+DATA_2: uint32_t(<NODE ID>)
 ```
 
 ### `EMessage_RecvAmISpy`
