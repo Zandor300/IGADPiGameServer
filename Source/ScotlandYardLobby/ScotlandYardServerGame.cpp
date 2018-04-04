@@ -170,6 +170,7 @@ void ScotlandYardServerGame::HandleGetSpyTravelLog(RakNet::Packet &a_Packet, Cli
 
 		RakNet::BitStream payload;
 		payload.Write(static_cast<RakNet::MessageID>(EMessage_RecvGetSpyTravelLog));
+		payload.Write(GetClient(m_Game->GetSpy().GetPlayer()));
 		WriteTravelLog(travelLog, payload);
 
 		SendNetworkMessage(GetPeerInterface(), a_Packet.systemAddress, payload);
@@ -270,6 +271,7 @@ void ScotlandYardServerGame::HandleGetTravelLog(RakNet::Packet &a_Packet, Client
 
 		RakNet::BitStream payload;
 		payload.Write(static_cast<RakNet::MessageID>(EMessage_RecvGetTravelLog));
+		payload.Write(GetClient(currentPlayer));
 		WriteTravelLog(travelLog, payload);
 		SendNetworkMessage(GetPeerInterface(), a_Packet.systemAddress, payload);
 	}
