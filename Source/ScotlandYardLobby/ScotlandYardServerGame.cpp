@@ -190,7 +190,7 @@ void ScotlandYardServerGame::HandleGetPlayerLocations(RakNet::Packet &a_Packet, 
 		payload.Write(static_cast<RakNet::MessageID>(EMessage_RecvGetPlayerLocations));
 
 		const ScotlandYardGame &game = *const_cast<ScotlandYardGame*>(m_Game);
-		const uint32_t numPlayers = GetNumPlayersPerGame();
+		const uint32_t numPlayers = GetPlayers().size();
 
 		payload.Write(numPlayers);
 
