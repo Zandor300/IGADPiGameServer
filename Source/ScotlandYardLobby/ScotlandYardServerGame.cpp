@@ -190,7 +190,7 @@ void ScotlandYardServerGame::HandleGetPlayerLocations(RakNet::Packet &a_Packet, 
 		payload.Write(static_cast<RakNet::MessageID>(EMessage_RecvGetPlayerLocations));
 
 		const ScotlandYardGame &game = *const_cast<ScotlandYardGame*>(m_Game);
-		const uint32_t numPlayers = GetPlayers().size();
+		const uint32_t numPlayers = GetPlayers().size() - 1;
 
 		payload.Write(numPlayers);
 
@@ -200,9 +200,10 @@ void ScotlandYardServerGame::HandleGetPlayerLocations(RakNet::Packet &a_Packet, 
 			const Player &player = game.GetPlayer(playerID);
 			if (!player.IsSpy())
 			{
-				payload.Write(playerID);
+				//payload.Write(playerID);
 				payload.Write(GetClient(playerID));
 				payload.Write(player.GetPosition());
+				printf("DEBUG: CLIENTID: %d     NODEID: %d", GetClient(playerID), player.GetPosition());
 			}
 		}
 		SendNetworkMessage(GetPeerInterface(), a_Packet.systemAddress, payload);
