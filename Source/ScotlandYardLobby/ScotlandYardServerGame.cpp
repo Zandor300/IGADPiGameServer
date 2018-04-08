@@ -200,6 +200,7 @@ void ScotlandYardServerGame::HandleGetPlayerLocations(RakNet::Packet &a_Packet, 
 			payload.Write(playerID);
 			payload.Write(GetClient(playerID));
 			payload.Write(player->GetPosition());
+			printf("DEBUG: %d %d %d", playerID, GetClient(playerID), player->GetPosition());
 		}
 		SendNetworkMessage(GetPeerInterface(), a_Packet.systemAddress, payload);
 	}
