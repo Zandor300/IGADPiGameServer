@@ -220,14 +220,16 @@ void ScotlandYardServerGame::HandleTravel(RakNet::Packet &a_Packet, ClientID a_C
 			ETravelOption travelOption;
 			RetrievTravelData(a_Packet, destination, travelOption);
 			ETravelResult result = m_Game->Travel(player, destination, travelOption);
-			if (ETravelResult_Success == result)
-			{
-				BroadcastTurnFinished(a_ClientID, GetClient(m_Game->WhoseTurnIsIt()));
-			}
+
 			RakNet::BitStream payload;
 			payload.Write(static_cast<RakNet::MessageID>(EMessage_RecvTravelResult));
 			payload.Write(static_cast<short>(result));
 			SendNetworkMessage(GetPeerInterface(), a_Packet.systemAddress, payload);
+
+			if (ETravelResult_Success == result)
+			{
+				BroadcastTurnFinished(a_ClientID, GetClient(m_Game->WhoseTurnIsIt()));
+			}
 		}
 	}
 	else
