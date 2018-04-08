@@ -10,6 +10,7 @@
 #include "ScotlandYard/Player.h"
 #include "ScotlandYard/ScotlandYardGame.h"
 #include "ScotlandYard/Spy.h"
+#include "Framework/Logging/ConsoleLogger.h"
 
 namespace
 {
@@ -193,7 +194,9 @@ void ScotlandYardServerGame::HandleGetPlayerLocations(RakNet::Packet &a_Packet, 
 		const uint32_t numPlayers = game.m_Players.size();
 
 		payload.Write(numPlayers);
-		printf("DEBUG: Test");
+
+		ILogger* logger = new ConsoleLogger();
+		logger->WriteLine("DEBUG: TEST");
 
 		for (Player* player : game.m_Players)
 		{
@@ -201,7 +204,7 @@ void ScotlandYardServerGame::HandleGetPlayerLocations(RakNet::Packet &a_Packet, 
 			payload.Write(playerID);
 			payload.Write(GetClient(playerID));
 			payload.Write(player->GetPosition());
-			printf("DEBUG: %d %d %d", playerID, GetClient(playerID), player->GetPosition());
+			logger->WriteLine("DEBUG: %d %d %d", playerID, GetClient(playerID), player->GetPosition());
 		}
 		SendNetworkMessage(GetPeerInterface(), a_Packet.systemAddress, payload);
 	}
