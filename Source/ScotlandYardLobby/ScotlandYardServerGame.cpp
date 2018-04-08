@@ -193,6 +193,7 @@ void ScotlandYardServerGame::HandleGetPlayerLocations(RakNet::Packet &a_Packet, 
 		const uint32_t numPlayers = game.m_Players.size();
 
 		payload.Write(numPlayers);
+		printf("DEBUG: Test");
 
 		for (Player* player : game.m_Players)
 		{
