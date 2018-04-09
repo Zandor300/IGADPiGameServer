@@ -194,7 +194,7 @@ bool ScotlandYardGame::CanPlayerTravel(EPlayer a_Player) const
 {
 	const Player &player = GetPlayer(a_Player);
 
-	uint32_t currentNode = player.GetPosition();
+	const uint32_t currentNode = player.GetPosition();
 
 	std::vector<ETravelOption> travelOptions;
 	travelOptions.push_back(ETravelOption_Taxi);
