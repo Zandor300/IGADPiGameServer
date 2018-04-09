@@ -1,6 +1,7 @@
 #include "Ply.h"
 
 #include "Framework/AssertMessage.h"
+#include <algorithm>
 
 Ply::Ply(uint32_t a_NumPlayers)
 {
