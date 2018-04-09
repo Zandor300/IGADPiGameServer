@@ -5,6 +5,7 @@
 #include "Server/BaseServerGame.h"
 
 #include <string>
+#include "ScotlandYard/EWinnable.h"
 
 class ScotlandYardGame;
 class ILogger;
@@ -35,6 +36,7 @@ private:
 	void HandleWhoIsSpy(RakNet::Packet &a_Packet);
 	void HandleGetRemainingTokens(RakNet::Packet &a_Packet, ClientID a_ClientID);
 	void HandlePlayerIsStuck(ClientID a_ClientID);
+	void HandleWin(EWinnable a_Winnable);
 
 	ScotlandYardGame *m_Game = nullptr;
 };
