@@ -116,7 +116,7 @@ bool ScotlandYardServerGame::HandleGameMessage(RakNet::Packet &a_Packet, ClientI
 		}
 	case EMessage_SendWhoIsSpy:
 		{
-			HandleGetAmISpy(a_Packet, a_ClientID);
+			HandleWhoIsSpy(a_Packet);
 			messageHandled = true;
 			break;
 		}
