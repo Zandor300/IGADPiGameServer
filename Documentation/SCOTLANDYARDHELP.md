@@ -151,6 +151,18 @@ DATA_9: ETravelOption(<TRAVEL OPTION>)
 DATA_10: uint32_t(<TOKENS FOR TRAVEL OPTION IN DATA_7>)
 ```
 
+### `EMessage_RecvPlayerIsStuck`
+Will inform all clients that a player is stuck and without enough tokens to continue. After this, the given player will never be given a turn again.
+```
+DATA_1: uint32_t(<CLIENT ID>)
+```
+
+### `EMessage_RecvGameEnded`
+Will inform all players that the game has been won by the spy or the detectives.
+```
+DATA_1: EWinnable(<WHO WON>)
+```
+
 ## Travel Options
 There are multiple ways of transportation in this game. Below is a list of all the options.
 
@@ -171,3 +183,11 @@ When receiving the `EMessage_RecvTravelResult` message, an `ETravelResult` sent 
 * `ETravelResult_Success`
 
 For more info, please check out [ETravelResult.h](/Include/ScotlandYard/ETravelResult.h).
+
+## Winnable
+When receiving  `EMessage_RecvGameEnded`, an `EWinnable` will be sent with. Below is a list of possible options:
+
+* `EWinnable_Spy`
+* `EWinnable_Detective`
+
+For more info, please check out [EWinnable.h](/Include/ScotlandYard/EWinnable.h).
