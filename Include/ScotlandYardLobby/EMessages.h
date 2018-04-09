@@ -34,6 +34,7 @@ enum EScotlandYardServerMessages
 	EMessage_RecvGetRemainingTokens,
 
 	// New:
-	EMessage_RecvPlayerIsStuck
+	EMessage_RecvPlayerIsStuck,
+	EMessage_RecvGameEnded
 	// End
 };
