@@ -33,6 +33,9 @@ bool Map::CanTravel(uint32_t a_Start, uint32_t a_End, ETravelOption a_TravelOpti
 	{
 		Edge &edge = **pos;
 		canTravel = (edge.m_Start.m_Index == a_Start && edge.m_End.m_Index == a_End && (edge.m_TravelOption == a_TravelOption || a_TravelOption == ETravelOption_Black));
+
+		if (canTravel)
+			break;
 	}
 	return canTravel;
 }
