@@ -190,7 +190,7 @@ ETravelResult ScotlandYardGame::Travel(EPlayer a_Player, uint32_t a_Destination,
 	return travelResult;
 }
 
-bool ScotlandYardGame::CanPlayerTravel(EPlayer a_Player)
+bool ScotlandYardGame::CanPlayerTravel(EPlayer a_Player) const
 {
 	const Player &player = GetPlayer(a_Player);
 
