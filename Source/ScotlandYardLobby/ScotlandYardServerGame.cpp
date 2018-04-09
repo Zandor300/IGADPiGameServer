@@ -10,6 +10,7 @@
 #include "ScotlandYard/Player.h"
 #include "ScotlandYard/ScotlandYardGame.h"
 #include "ScotlandYard/Spy.h"
+#include "ScotlandYard/Ply.h"
 
 namespace
 {
@@ -229,6 +230,7 @@ void ScotlandYardServerGame::HandleTravel(RakNet::Packet &a_Packet, ClientID a_C
 			if (ETravelResult_Success == result)
 			{
 				BroadcastTurnFinished(a_ClientID, GetClient(m_Game->WhoseTurnIsIt()));
+				HandlePlayerIsStuck(GetClient(m_Game->WhoseTurnIsIt()));
 			}
 		}
 	}
@@ -352,5 +354,26 @@ void ScotlandYardServerGame::HandleGetRemainingTokens(RakNet::Packet &a_Packet, 
 	{
 		SendNetworkMessage(GetPeerInterface(), a_Packet.systemAddress, EMessage_RecvGameNotActive);
 	}
+}
+
+void ScotlandYardServerGame::HandlePlayerIsStuck(ClientID a_ClientID)
+{
+	const ScotlandYardGame &game = *const_cast<ScotlandYardGame*>(m_Game);
+	const EPlayer currentPlayer = GetPlayer(a_ClientID);
+	if (game.CanPlayerTravel(currentPlayer))
+		return;
+
+	game.m_Ply->DisablePlayer(currentPlayer);
+
+	for (UserData* userData : GetPlayers())
+	{
+		RakNet::BitStream payload;
+		payload.Write(static_cast<RakNet::MessageID>(EMessage_RecvPlayerIsStuck));
+		payload.Write(a_ClientID);
+		SendNetworkMessage(GetPeerInterface(), userData->m_SystemAddress, payload);
+	}
+
+	game.m_Ply->FinishedTurn(currentPlayer);
+	BroadcastTurnFinished(a_ClientID, GetClient(m_Game->WhoseTurnIsIt()));
 }
 

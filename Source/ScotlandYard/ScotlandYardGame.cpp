@@ -190,6 +190,31 @@ ETravelResult ScotlandYardGame::Travel(EPlayer a_Player, uint32_t a_Destination,
 	return travelResult;
 }
 
+bool ScotlandYardGame::CanPlayerTravel(EPlayer a_Player)
+{
+	const Player &player = GetPlayer(a_Player);
+
+	uint32_t currentNode = player.GetPosition();
+
+	std::vector<ETravelOption> travelOptions;
+	travelOptions.push_back(ETravelOption_Taxi);
+	travelOptions.push_back(ETravelOption_Bus);
+	travelOptions.push_back(ETravelOption_Underground);
+	if(player.IsSpy())
+		travelOptions.push_back(ETravelOption_Ferry);
+
+	for(Edge* edge : m_Map.m_Edges)
+	{
+		if (edge->m_Start.m_Index != currentNode)
+			continue;
+
+		for (ETravelOption travelOption : travelOptions)
+			if (edge->m_TravelOption == travelOption && player.GetTokens(travelOption) > 0)
+				return true;
+	}
+	return false;
+}
+
 bool ScotlandYardGame::IsActive() const
 {
 	return m_IsActive;

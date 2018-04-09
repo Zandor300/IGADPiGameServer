@@ -23,7 +23,9 @@ public:
 	void AddPlayer(EPlayer a_Player);
 	const Player& GetPlayer(EPlayer a_Player) const;
 	bool IsSpy(EPlayer a_Player);
+
 	ETravelResult Travel(EPlayer a_Player, uint32_t a_Destination, ETravelOption a_TravelOption);
+	bool CanPlayerTravel(EPlayer a_Player) const;
 
 	bool IsActive() const;
 	EPlayer WhoseTurnIsIt() const;

@@ -31,5 +31,9 @@ enum EScotlandYardServerMessages
 	EMessage_RecvWhoIsSpy,
 	// End
 
-	EMessage_RecvGetRemainingTokens
+	EMessage_RecvGetRemainingTokens,
+
+	// New:
+	EMessage_RecvPlayerIsStuck
+	// End
 };
