@@ -25,13 +25,13 @@ void Map::AddEdge(uint32_t a_Start, uint32_t a_End, ETravelOption a_TravelOption
 	AssertMessage(a_End <= static_cast<uint32_t>(m_Nodes.size()), "End index is too large!");
 	m_Edges.push_back(new Edge(*m_Nodes[a_Start - 1], *m_Nodes[a_End - 1], a_TravelOption));
 }
+
 bool Map::CanTravel(uint32_t a_Start, uint32_t a_End, ETravelOption a_TravelOption) const
 {
 	bool canTravel = false;
-	for (auto pos : m_Edges)
+	for (Edge* edge : m_Edges)
 	{
-		Edge &edge = *pos;
-		canTravel = (edge.m_Start.m_Index == a_Start && edge.m_End.m_Index == a_End && (edge.m_TravelOption == a_TravelOption));
+		canTravel = edge->m_Start.m_Index == a_Start && edge->m_End.m_Index == a_End && edge->m_TravelOption == a_TravelOption;
 		if(canTravel) break;
 	}
 	return canTravel;
