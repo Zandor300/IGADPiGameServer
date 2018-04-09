@@ -89,14 +89,12 @@ void BaseServerGame::BroadcastTurnFinished(const ClientID &a_ClientID) const
 
 void BaseServerGame::BroadcastTurnFinished(const ClientID& a_ClientID, const ClientID& a_ClientIDNewPlayer) const
 {
-	for (auto pos = m_Players.begin(); pos != m_Players.end(); ++pos)
+	for (UserData* userData : GetPlayers())
 	{
-		const UserData &userData = **pos;
-		
 		RakNet::BitStream payload;
 		payload.Write(static_cast<RakNet::MessageID>(EMessage_RecvOpponentFinished));
 		payload.Write(a_ClientIDNewPlayer);
-		SendNetworkMessage(m_PeerInterface, userData.m_SystemAddress, payload);
+		SendNetworkMessage(m_PeerInterface, userData->m_SystemAddress, payload);
 	}
 }
 
