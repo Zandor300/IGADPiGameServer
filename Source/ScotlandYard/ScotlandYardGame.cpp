@@ -29,13 +29,10 @@ namespace
 		return result;
 	}
 
-	void InsertEdges(Map &a_Map, const uint32_t a_StartIndex, std::vector<std::string> &a_Destinations, ETravelOption a_TravelOption)
+	void InsertEdges(Map* a_Map, const uint32_t a_StartIndex, std::vector<std::string> a_Destinations, ETravelOption a_TravelOption)
 	{
-		for (auto pos = a_Destinations.begin(); pos != a_Destinations.end(); ++pos)
-		{
-			const uint32_t destination = StringToInt(*pos);
-			a_Map.AddEdge(a_StartIndex, destination, a_TravelOption);
-		}
+		for (std::string destination : a_Destinations)
+			a_Map->AddEdge(a_StartIndex, StringToInt(destination), a_TravelOption);
 	}
 
 	bool IsPositionFree(uint32_t a_Position, const std::vector<Player*> &a_Players, bool a_IgnoreSpy = false)
@@ -154,7 +151,7 @@ ETravelResult ScotlandYardGame::Travel(EPlayer a_Player, uint32_t a_Destination,
 		if (hasTokens)
 		{
 			const uint32_t startIndex = player.GetPosition();
-			const bool canTravel = m_Map.CanTravel(startIndex, a_Destination, a_TravelOption);
+			const bool canTravel = m_Map->CanTravel(startIndex, a_Destination, a_TravelOption);
 			if (canTravel)
 			{
 				player.m_Position = a_Destination;
@@ -263,7 +260,7 @@ void ScotlandYardGame::LoadMap(const std::string &a_Filename)
 		{
 			std::vector<std::string> tokens = Tokenize(line, ";");
 			uint32_t nodeIndex = StringToInt(tokens[0]);
-			Node *node = m_Map.m_Nodes[nodeIndex - 1];
+			Node *node = m_Map->m_Nodes[nodeIndex - 1];
 			AssertMessage(nullptr != node, "Encounter uninitialized node!");
 
 			temp = Tokenize(tokens[1], ",");

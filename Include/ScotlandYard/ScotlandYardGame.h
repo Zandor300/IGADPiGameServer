@@ -46,7 +46,7 @@ private:
 
 	bool m_IsActive = false;
 	uint32_t m_NumPlayers;
-	Map m_Map;
+	Map* m_Map;
 	bool m_GameOver = false;
 	Ply *m_Ply;
 
