@@ -200,7 +200,7 @@ bool ScotlandYardGame::CanPlayerTravel(EPlayer a_Player) const
 	if(player.IsSpy())
 		travelOptions.push_back(ETravelOption_Ferry);
 
-	for(Edge* edge : m_Map.m_Edges)
+	for(Edge* edge : m_Map->m_Edges)
 	{
 		if (edge->m_Start.m_Index != currentNode)
 			continue;

@@ -31,12 +31,7 @@ bool Map::CanTravel(uint32_t a_Start, uint32_t a_End, ETravelOption a_TravelOpti
 	bool canTravel = false;
 	for (Edge* edge : m_Edges)
 	{
-<<<<<<< HEAD
-		Edge &edge = *pos;
-		canTravel = (edge.m_Start.m_Index == a_Start && edge.m_End.m_Index == a_End && edge.m_TravelOption == a_TravelOption);
-=======
 		canTravel = edge->m_Start.m_Index == a_Start && edge->m_End.m_Index == a_End && edge->m_TravelOption == a_TravelOption;
->>>>>>> 1e7a708881742921cec63e211b96328e984ccbb1
 		if(canTravel) break;
 	}
 	return canTravel;
