@@ -16,4 +16,5 @@ private:
 	const ETravelOption m_TravelOption;
 
 	friend class Map;
+	friend class ScotlandYardGame;
 };
