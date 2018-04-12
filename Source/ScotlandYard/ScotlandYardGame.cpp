@@ -156,6 +156,7 @@ ETravelResult ScotlandYardGame::Travel(EPlayer a_Player, uint32_t a_Destination,
 			const bool canTravel = m_Map->CanTravel(startIndex, a_Destination, a_TravelOption);
 			if (canTravel)
 			{
+				std::cout << "DEBUG: Player can travel to " << a_Destination << " using " << a_TravelOption << std::endl;
 				player.m_Position = a_Destination;
 				player.DropToken(a_TravelOption);
 				if (!player.IsSpy())
@@ -174,11 +175,13 @@ ETravelResult ScotlandYardGame::Travel(EPlayer a_Player, uint32_t a_Destination,
 			}
 			else
 			{
+				std::cout << "DEBUG: Player can't travel to " << a_Destination << " using " << a_TravelOption << std::endl;
 				travelResult = ETravelResult_NoValidTravelOption;
 			}
 		}
 		else
 		{
+			std::cout << "DEBUG: Player doesn't have enough tokens to travel to " << a_Destination << " using " << a_TravelOption << std::endl;
 			travelResult = ETravelResult_NoTokensLeft;
 		}
 	}
