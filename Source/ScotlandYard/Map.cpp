@@ -4,6 +4,7 @@
 #include "Framework/ClearContainerContents.h"
 #include "Edge.h"
 #include "Node.h"
+#include <iostream>
 
 Map::Map()
 {
@@ -21,9 +22,11 @@ Map::~Map()
 
 void Map::AddEdge(uint32_t a_Start, uint32_t a_End, ETravelOption a_TravelOption)
 {
+	std::cout << "DEBUG: AddEdge " << a_Start << ">" << a_End << " using " << a_TravelOption << std::endl;
 	AssertMessage(a_Start <= static_cast<uint32_t>(m_Nodes.size()), "Start index is too large!");
 	AssertMessage(a_End <= static_cast<uint32_t>(m_Nodes.size()), "End index is too large!");
 	m_Edges.push_back(new Edge(*m_Nodes[a_Start - 1], *m_Nodes[a_End - 1], a_TravelOption));
+	std::cout << "DEBUG: AddEdge end" << std::endl;
 }
 
 bool Map::CanTravel(uint32_t a_Start, uint32_t a_End, ETravelOption a_TravelOption) const

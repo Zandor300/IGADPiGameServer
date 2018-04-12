@@ -32,7 +32,7 @@ namespace
 
 	void InsertEdges(Map* a_Map, const uint32_t a_StartIndex, std::vector<std::string> a_Destinations, ETravelOption a_TravelOption)
 	{
-		std::cout << "InsertEdges " << a_StartIndex << " " << a_TravelOption;
+		std::cout << "DEBUG: InsertEdges " << a_StartIndex << " " << a_TravelOption << std::endl;
 		for (std::string destination : a_Destinations)
 			a_Map->AddEdge(a_StartIndex, StringToInt(destination), a_TravelOption);
 	}
