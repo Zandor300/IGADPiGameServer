@@ -25,7 +25,7 @@ void Map::AddEdge(uint32_t a_Start, uint32_t a_End, ETravelOption a_TravelOption
 	std::cout << "DEBUG: AddEdge " << a_Start << ">" << a_End << " using " << a_TravelOption << std::endl;
 	AssertMessage(a_Start <= static_cast<uint32_t>(m_Nodes.size()), "Start index is too large!");
 	AssertMessage(a_End <= static_cast<uint32_t>(m_Nodes.size()), "End index is too large!");
-	m_Edges.push_back(new Edge(*m_Nodes[a_Start - 1], *m_Nodes[a_End - 1], a_TravelOption));
+	m_Edges.push_back(new Edge(m_Nodes[a_Start - 1]->m_Index, m_Nodes[a_End - 1]->m_Index, a_TravelOption));
 	std::cout << "DEBUG: AddEdge end" << std::endl;
 }
 
@@ -34,7 +34,7 @@ bool Map::CanTravel(uint32_t a_Start, uint32_t a_End, ETravelOption a_TravelOpti
 	bool canTravel = false;
 	for (Edge* edge : m_Edges)
 	{
-		canTravel = edge->m_Start.m_Index == a_Start && edge->m_End.m_Index == a_End && edge->m_TravelOption == a_TravelOption;
+		canTravel = m_Nodes[edge->m_Start]->m_Index == a_Start && m_Nodes[edge->m_End]->m_Index == a_End && edge->m_TravelOption == a_TravelOption;
 		if(canTravel) break;
 	}
 	return canTravel;
@@ -42,12 +42,11 @@ bool Map::CanTravel(uint32_t a_Start, uint32_t a_End, ETravelOption a_TravelOpti
 
 void Map::GetTransport(uint32_t a_Start, uint32_t a_End, std::vector<ETravelOption> a_TravelOptions) const
 {
-	for (auto pos = m_Edges.begin(); pos != m_Edges.end(); ++pos)
+	for (Edge* edge : m_Edges)
 	{
-		Edge &edge = **pos;
-		if (edge.m_Start.m_Index == a_Start && edge.m_End.m_Index == a_End)
+		if (m_Nodes[edge->m_Start]->m_Index == a_Start && m_Nodes[edge->m_End]->m_Index == a_End)
 		{
-			a_TravelOptions.push_back(edge.m_TravelOption);
+			a_TravelOptions.push_back(edge->m_TravelOption);
 		}
 	}
 }
