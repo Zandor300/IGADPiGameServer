@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <fstream>
 #include <vector>
+#include <iostream>
 
 namespace
 {
@@ -28,7 +29,7 @@ namespace
 		convert >> result;
 		return result;
 	}
-#include <iostream>
+
 	void InsertEdges(Map* a_Map, const uint32_t a_StartIndex, std::vector<std::string> a_Destinations, ETravelOption a_TravelOption)
 	{
 		std::cout << "InsertEdges " << a_StartIndex << " " << a_TravelOption;
