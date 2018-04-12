@@ -204,7 +204,7 @@ bool ScotlandYardGame::CanPlayerTravel(EPlayer a_Player) const
 
 	for(Edge* edge : m_Map->m_Edges)
 	{
-		if (m_Map->m_Nodes[edge->m_Start]->m_Index != currentNode)
+		if (m_Map->m_Nodes[edge->m_Start - 1]->m_Index != currentNode)
 			continue;
 
 		for (ETravelOption travelOption : travelOptions)
