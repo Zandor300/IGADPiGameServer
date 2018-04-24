@@ -243,8 +243,7 @@ uint32_t ScotlandYardGame::GetNumPlayers() const
 
 uint32_t ScotlandYardGame::GetNumPlayersPerGame()
 {
-	//return 6;
-	return 3;
+	return 6;
 }
 
 const std::string& ScotlandYardGame::GetMapFilename()
